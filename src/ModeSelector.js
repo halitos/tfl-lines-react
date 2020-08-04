@@ -4,12 +4,10 @@ const ModeSelector = ({ handleSelectedMode }) => {
   const [mode, setMode] = useState([]);
 
   useEffect(() => {
+    if (!mode) return;
     fetch("https://api.tfl.gov.uk/Line/Meta/Modes")
       .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        setMode(data);
-      });
+      .then((data) => setMode(data));
   }, []);
 
   function handleChange(event) {
@@ -19,20 +17,18 @@ const ModeSelector = ({ handleSelectedMode }) => {
   }
 
   return (
-    <>
-      <select onChange={handleChange}>
+    <div className="container">
+      <select className="selector" onChange={handleChange}>
         <option>Chose a Transport Mode</option>
         {mode.map((m, index) => {
-          if (m.isTflService) {
-            return (
-              <option key={index} value={m.modeName}>
-                {m.modeName}
-              </option>
-            );
-          }
+          return (
+            <option key={index} value={m.modeName}>
+              {m.modeName}
+            </option>
+          );
         })}
       </select>
-    </>
+    </div>
   );
 };
 
