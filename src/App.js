@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./App.css";
+import LineInfo from "./LineInfo";
 import ModeSelector from "./ModeSelector";
 import TransportSelector from "./TransportSelector";
 
@@ -28,6 +29,7 @@ function App() {
         />
         <h4>You selected: {transport}</h4>
       </div>
+      <LineInfo />
     </>
   );
 }
