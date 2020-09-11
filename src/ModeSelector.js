@@ -21,11 +21,13 @@ const ModeSelector = ({ handleSelectedMode }) => {
       <select className="selector" onChange={handleChange}>
         <option>Chose a Transport Mode</option>
         {mode.map((m, index) => {
-          return (
-            <option key={index} value={m.modeName}>
-              {m.modeName}
-            </option>
-          );
+          if (m.isTflService) {
+            return (
+              <option key={index} value={m.modeName}>
+                {m.modeName}
+              </option>
+            );
+          }
         })}
       </select>
     </div>
